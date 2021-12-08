@@ -5,10 +5,33 @@ export class ParentComponent extends Component {
     super(props);
     this.state = props;
   }
+
+
+
   parentHandler = (e) => {
     console.log('parent clicked', e.target.value);
+
+    {
+      this.state.hide ? null: <button onClick={this.hideChild}>Hide Child</button>
+    }
     this.setState({ name: e.target.value });
   };
+
+  componentDidMount() {
+    console.log('Parent mounted');
+  }
+  componentWillMount() {
+    console.log('parent will mounted');
+  }
+
+  hideChild =()=>{
+    this.setState(
+      {
+        hide:true
+      }
+    )
+}
+
   render() {
     return (
       <div>
@@ -24,6 +47,13 @@ export class ParentComponent extends Component {
 export class ChildComponent extends Component {
   constructor(props) {
     super();
+  }
+
+  componentDidMount() {
+    console.log('child mounted');
+  }
+  componentWillMount() {
+    console.log('child will mounted');
   }
   render() {
     return (
